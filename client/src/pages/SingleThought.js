@@ -1,10 +1,12 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
+
+import ReactionList from '../components/ReactionList';
+import ReactionForm from '../components/ReactionForm';
+
+import Auth from '../utils/auth';
 import { useQuery } from '@apollo/react-hooks';
 import { QUERY_THOUGHT } from '../utils/queries';
-import ReactionList from '../components/ReactionList';
-import Auth from '../utils/auth';
-import ReactionForm from '../components/ReactionForm';
 
 const SingleThought = props => {
   const { id: thoughtId } = useParams();
@@ -19,7 +21,6 @@ const SingleThought = props => {
     return <div>Loading...</div>;
   }
 
-
   return (
     <div>
       <div className="card mb-3">
@@ -27,7 +28,7 @@ const SingleThought = props => {
           <span style={{ fontWeight: 700 }} className="text-light">
             {thought.username}
           </span>{' '}
-      thought on {thought.createdAt}
+          thought on {thought.createdAt}
         </p>
         <div className="card-body">
           <p>{thought.thoughtText}</p>
@@ -35,6 +36,7 @@ const SingleThought = props => {
       </div>
 
       {thought.reactionCount > 0 && <ReactionList reactions={thought.reactions} />}
+
       {Auth.loggedIn() && <ReactionForm thoughtId={thought._id} />}
     </div>
   );

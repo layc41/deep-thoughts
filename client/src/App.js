@@ -1,21 +1,17 @@
 import React from 'react';
-
-// add these two library import statements
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { ApolloProvider } from '@apollo/react-hooks';
 import ApolloClient from 'apollo-boost';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-
-import Login from './pages/Login';
-import NoMatch from './pages/NoMatch';
-import SingleThought from './pages/SingleThought';
-import Profile from './pages/Profile';
-import Signup from './pages/Signup';
-
 
 import Header from './components/Header';
 import Footer from './components/Footer';
 
 import Home from './pages/Home';
+import Login from './pages/Login';
+import NoMatch from './pages/NoMatch';
+import SingleThought from './pages/SingleThought';
+import Profile from './pages/Profile';
+import Signup from './pages/Signup';
 
 const client = new ApolloClient({
   request: operation => {
@@ -29,7 +25,6 @@ const client = new ApolloClient({
   },
   uri: '/graphql'
 });
-
 
 function App() {
   return (
@@ -54,6 +49,5 @@ function App() {
     </ApolloProvider>
   );
 }
-
 
 export default App;
